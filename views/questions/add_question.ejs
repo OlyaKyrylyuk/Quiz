@@ -1,0 +1,8 @@
+<h2>New Question</h2>
+<form action="/questions/add" method="POST">
+  <label>Input question</label>
+  <input type="text" name="question" />
+  <input type="hidden" name="quize_id" value= "<%= id %>" />
+  <a href="/">Cancel</a>
+  <button type="submit">Create</button>
+</form>

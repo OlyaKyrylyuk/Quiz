@@ -1,0 +1,6 @@
+Questions for Quiz - <%= questions.name %>
+<ul class="list-group">
+  <% questions.questions.forEach(function(question) { %>
+  <li class="list-group-item"><%= question.questionContent %></li>
+  <% }) %>
+</ul>
