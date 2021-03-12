@@ -7,6 +7,16 @@ const router = express.Router();
 router.route("/").get(async (req: Request, res: Response) => {
   res.send("Main page");
 });
+router.route("/admin/quizes").get(async (req: Request, res: Response) => {
+  let quizes = await Quiz.find((err: string) => {
+    if (err) {
+      res.send("Error!");
+    } else {
+      console.log("Data is found");
+    }
+  });
+  res.render("quizes/admin/all", { quizes: quizes });
+});
 router.route("/quizes").get(async (req: Request, res: Response) => {
   let quizes = await Quiz.find((err: string) => {
     if (err) {
@@ -15,7 +25,7 @@ router.route("/quizes").get(async (req: Request, res: Response) => {
       console.log("Data is found");
     }
   });
-  res.render("quizes/all", { quizes: quizes });
+  res.render("quizes/user/all_quizes", { quizes: quizes });
 });
 
 router
@@ -28,7 +38,7 @@ router
         console.log("Data is found");
       }
     });
-    res.render("quizes/add_quiz");
+    res.render("quizes/admin/add_quiz");
   })
 
   .post((req: Request, res: Response, next: NextFunction) => {

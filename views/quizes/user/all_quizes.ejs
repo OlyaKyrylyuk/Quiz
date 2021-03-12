@@ -1,0 +1,19 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Link</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% quizes.forEach(function(quiz) { %>
+      <tr>
+        <td><%= quiz.name %></td>
+        <td><%= quiz.link %></td>
+        <td><a href="/questions/pass/quiz/<%= quiz._id %>">Pass</a></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  
