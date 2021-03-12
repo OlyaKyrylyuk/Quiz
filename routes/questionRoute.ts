@@ -19,11 +19,16 @@ router.route("/add").post(async (req: Request, res: Response) => {
     { $push: { questions: question_data } },
     { new: true, useFindAndModify: false }
   );
-  res.redirect("/quizes");
+  res.redirect("/admin/quizes");
 });
 router.route("/quiz/:id").get(async (req: Request, res: Response) => {
   let data = await Quiz.findOne({ _id: req.params.id }).populate("questions");
   res.render("questions/all", { questions: data });
 });
-router.route("/questions/quiz/:id");
+
+router.route("/pass/quiz/:id").get(async (req: Request, res: Response) => {
+  let data = await Quiz.findOne({ _id: req.params.id }).populate("questions");
+  res.render("answers/user/add", { questions: data });
+});
+//router.route("/questions/quiz/:id");
 export { router as QuestionRouter };

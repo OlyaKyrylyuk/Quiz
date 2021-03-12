@@ -1,0 +1,8 @@
+<h2>Give answer for questions of Quiz - "<%= questions.name %>"</h2>
+<form action="/answers/add/<%= questions._id %>" method="POST">
+  <% questions.questions.forEach(function(question) { %>
+  <h1><%= question.questionContent %></h1>
+  <input name="answers[]" />
+  <% }) %>
+  <button>Send results</button>
+</form>
