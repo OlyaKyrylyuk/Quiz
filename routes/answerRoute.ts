@@ -1,13 +1,11 @@
-import { Options } from "body-parser";
 import express, { Request, Response, NextFunction } from "express";
-import { constants } from "node:fs";
 import Answer from "./../models/answer";
 import Question from "./../models/question";
 import Quiz from "./../models/quiz";
 
 const router = express.Router();
 
-router.route("/add/:id").post(async (req: Request, res: Response) => {
+router.route("/add/:id").post(async(req: Request, res: Response) => {
   let Array_data: any = [];
   let questions = Quiz.findOne({ _id: req.params.id })
     .populate("questions")
@@ -23,18 +21,26 @@ router.route("/add/:id").post(async (req: Request, res: Response) => {
       }
     })
     .then(() => {
+      Array_data.forEach((arr: any)=>{
+        arr.save()
+      })
+      
+    }).then(() => {
       Array_data.forEach((arr: any) => {
-        arr.save();
+        console.log('obj: '+arr)
         Question.findByIdAndUpdate(
-          arr.question_id,
-          { $push: { answers: arr } },
-          { new: true, useFindAndModify: false }
-        );
-      });
-    })
-    .then(() => {
+         arr.question_id,
+         { $push: { answers: arr } },
+         { new: true, useFindAndModify: false }
+       ); 
+       console.log('done')   
+   });
+      
+    }).then(()=>{
+      console.log('fff')
       res.redirect("/quizes");
-    });
+    })
+    
 });
 
 export { router as AnswerRouter };
