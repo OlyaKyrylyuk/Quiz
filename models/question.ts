@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
+import { IAnswer } from "./answer";
 
 export interface IQuestion extends mongoose.Document {
   questionContent: string;
   quiz_id: mongoose.Types.ObjectId;
+  answers: Array<IAnswer>;
 }
 
 export let QuestionSchema = new mongoose.Schema({
@@ -14,5 +16,5 @@ export let QuestionSchema = new mongoose.Schema({
   answers: [{ type: mongoose.Schema.Types.ObjectId, ref: "Answer" }],
 });
 
-const Quiz = mongoose.model<IQuestion>("Question", QuestionSchema);
-export default Quiz;
+const Question = mongoose.model<IQuestion>("Question", QuestionSchema);
+export default Question;

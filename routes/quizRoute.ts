@@ -1,13 +1,22 @@
 import { Options } from "body-parser";
 import express, { Request, Response, NextFunction } from "express";
 import Quiz from "./../models/quiz";
+import Answer from "./../models/answer";
+import { AnswerRouter } from "./answerRoute";
+import secret_token from "../security/secret_token"
 
+/*var headers:string = {
+  'Bearer': secret_token
+};*/
 const router = express.Router();
 
 router.route("/").get(async (req: Request, res: Response) => {
   res.send("Main page");
 });
+
 router.route("/admin/quizes").get(async (req: Request, res: Response) => {
+  var token:string = secret_token()
+  res.header("Bearer", token);
   let quizes = await Quiz.find((err: string) => {
     if (err) {
       res.send("Error!");
@@ -29,8 +38,10 @@ router.route("/quizes").get(async (req: Request, res: Response) => {
 });
 
 router
-  .route("/quizes/add")
+  .route("/admin/quizes/add")
   .get(async (req: Request, res: Response) => {
+    var token:string = secret_token()
+    res.header("Bearer", token);
     await Quiz.find((err: string) => {
       if (err) {
         res.send("Error!");
@@ -51,4 +62,12 @@ router
     });
   });
 
+  router
+  .route("/statisctics")
+  .get((req: Request, res: Response) => {
+    var token:string = secret_token()
+    res.header("Bearer", token);
+    let quizes = Quiz.find()
+    
+  })
 export { router as QuizRouter };

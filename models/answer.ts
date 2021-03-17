@@ -13,5 +13,5 @@ export let AnswerSchema = new mongoose.Schema({
   },
 });
 
-const Quiz = mongoose.model<IAnswer>("Answer", AnswerSchema);
-export default Quiz;
+const Answer = mongoose.model<IAnswer>("Answer", AnswerSchema);
+export default Answer;
