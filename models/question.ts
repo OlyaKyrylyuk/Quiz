@@ -4,7 +4,7 @@ import { IAnswer } from "./answer";
 export interface IQuestion extends mongoose.Document {
   questionContent: string;
   quiz_id: mongoose.Types.ObjectId;
-  answers: Array<IAnswer>;
+  answers: Array<IQuestion>;
 }
 
 export let QuestionSchema = new mongoose.Schema({
