@@ -3,7 +3,7 @@ import express, { Request, Response, NextFunction } from "express";
 import Quiz from "./../models/quiz";
 import Answer from "./../models/answer";
 import { AnswerRouter } from "./answerRoute";
-import secret_token from "../security/secret_token"
+import secret_token from "../security/secret_token";
 
 /*var headers:string = {
   'Bearer': secret_token
@@ -15,7 +15,7 @@ router.route("/").get(async (req: Request, res: Response) => {
 });
 
 router.route("/admin/quizes").get(async (req: Request, res: Response) => {
-  var token:string = secret_token()
+  var token: string = secret_token();
   res.header("Bearer", token);
   let quizes = await Quiz.find((err: string) => {
     if (err) {
@@ -40,7 +40,7 @@ router.route("/quizes").get(async (req: Request, res: Response) => {
 router
   .route("/admin/quizes/add")
   .get(async (req: Request, res: Response) => {
-    var token:string = secret_token()
+    var token: string = secret_token();
     res.header("Bearer", token);
     await Quiz.find((err: string) => {
       if (err) {
@@ -62,12 +62,9 @@ router
     });
   });
 
-  router
-  .route("/statisctics")
-  .get((req: Request, res: Response) => {
-    var token:string = secret_token()
-    res.header("Bearer", token);
-    let quizes = Quiz.find()
-    
-  })
+router.route("/statisctics").get((req: Request, res: Response) => {
+  var token: string = secret_token();
+  res.header("Bearer", token);
+  let quizes = Quiz.find();
+});
 export { router as QuizRouter };
