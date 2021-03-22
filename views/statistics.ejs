@@ -1,0 +1,17 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Quiz Name</th>
+      <th scope="col">Count of answers</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% data.forEach(function(quiz, index) { %>
+    <tr>
+      <td><%= quiz.name %></td>
+      <td><%= quiz.count %></td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
