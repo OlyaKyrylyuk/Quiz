@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 export interface IAnswer extends mongoose.Document {
   answerContent: string;
   question_id: mongoose.Types.ObjectId;
+  quiz_id: mongoose.Types.ObjectId;
 }
 
 export let AnswerSchema = new mongoose.Schema({
@@ -10,6 +11,10 @@ export let AnswerSchema = new mongoose.Schema({
   question_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Question",
+  },
+  quiz_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Quiz",
   },
 });
 

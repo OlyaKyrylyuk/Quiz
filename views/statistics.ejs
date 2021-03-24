@@ -1,0 +1,22 @@
+<div class="container">
+  <h3>Query #2</h3>
+  <h5>Count of quizes with answers: <%= quizes_with_answers %></h5>
+  <h5>Count of quizes without answers: <%= quizes_without_answers %></h5>
+  <h3>Query #1</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Quiz Name</th>
+        <th scope="col">Count of answers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.forEach(function(quiz, index) { %>
+      <tr>
+        <td><%= quiz.name %></td>
+        <td><%= quiz.count %></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
