@@ -32,8 +32,14 @@ export let addAnswer = async (req: Request, res: Response) => {
           result.answers.push(arr);
           await result.save();
         }
+        let result2 = await Quiz.findById(arr.quiz_id);
+        if (result2 != null) {
+          result2.answers.push(arr);
+          await result2.save();
+        }
       });
     })
+
     .then(() => {
       console.log("fff");
       res.redirect("/quizes");

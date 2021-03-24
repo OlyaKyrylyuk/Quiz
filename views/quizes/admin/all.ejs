@@ -1,18 +1,21 @@
+<div class="container">
+  <a href = "/admin/quizes/add">New quiz</a>
 <table class="table">
   <thead>
     <tr>
+      <th scope="col">№</th>
       <th scope="col">Name</th>
-      <th scope="col">Link</th>
-      <th scope="col"></th>
+      <th scope="col">More details</th>
     </tr>
   </thead>
   <tbody>
-    <% quizes.forEach(function(quiz) { %>
+    <% quizes.forEach(function(quiz, index) { %>
     <tr>
+      <td><%= index+1 %></td>
       <td><%= quiz.name %></td>
-      <td><%= quiz.link %></td>
       <td><a href="/questions/quiz/<%= quiz._id %>">Look</a></td>
     </tr>
     <% }) %>
   </tbody>
 </table>
+</div>

@@ -47,39 +47,39 @@ export let getFormAddQuiz = async (req: Request, res: Response) => {
 export let addQuiz = (req: Request, res: Response, next: NextFunction) => {
   const quiz_data = new Quiz({
     name: req.body.name,
-    link: req.body.link,
   });
   quiz_data.save().then((result) => {
     res.redirect("/questions/add/quiz/" + result._id);
   });
 };
 
-export let statistics = (req: Request, res: Response) => {
-  console.log("hd");
-  let count: any = [];
-  let answers_count: Number = 0;
+export let statistics = async (req: Request, res: Response) => {
   var token: string = secret_token();
   res.header("Bearer", token);
-  Quiz.find()
-    .then(async (res) => {
-      await res.forEach(async (element) => {
-        answers_count = await Answer.find()
-          .where("quiz_id")
-          .equals(element._id)
-          .countDocuments();
-        console.log("name:" + element.name + " count:" + answers_count);
-        await count.push({ name: element.name, count: answers_count });
-      });
-    })
-    .then(() => {
-      let n: ReturnType<typeof setTimeout>;
-      let f = () => {
-        //console.log("countt"+count)
-        res.render("statistics", { data: count });
-      };
-      n = setTimeout(f, 6000);
-      //res.render('statistics',{data: count})
-    });
-
-  //res.render('statistics',{})
+  let quizes = await Quiz.aggregate([
+    { $project: { name: "$name", count: { $size: "$answers" } } },
+  ]);
+  let quizes_with_answers = await Quiz.aggregate([
+    {
+      $match: {
+        "answers.1": { $exists: true },
+      },
+    },
+    {
+      $count: "res",
+    },
+  ]);
+  let quizes_without_answers = await Quiz.aggregate([
+    {
+      $match: { "answers.1": { $exists: false } },
+    },
+    {
+      $count: "res",
+    },
+  ]);
+  res.render("statistics", {
+    data: quizes,
+    quizes_with_answers: quizes_with_answers[0].res,
+    quizes_without_answers: quizes_without_answers[0].res,
+  });
 };
