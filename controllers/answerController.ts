@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response} from "express";
 import Quiz from "./../models/quiz";
 import Answer from "./../models/answer";
 import Question from "../models/question";

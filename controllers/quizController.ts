@@ -1,50 +1,40 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response} from "express";
 import Quiz from "./../models/quiz";
-import Answer from "./../models/answer";
 import secret_token from "../security/secret_token";
 
 export let getApiDocumentation = (req: Request, res: Response) => {
-  res.send("Main page");
+  res.send("api Documentation: localhost:3000/api-docs");
 };
 
 export let getAllQuizesAdmin = async (req: Request, res: Response) => {
   var token: string = secret_token();
   res.header("Bearer", token);
-  let quizes = await Quiz.find((err: string) => {
+  let quizes = await Quiz.find((err: string, quizes: any) => {
     if (err) {
       res.send("Error!");
     } else {
-      console.log("Data is found");
+      return res.render("quizes/admin/all", { quizes: quizes });
     }
   });
-  res.render("quizes/admin/all", { quizes: quizes });
 };
 
 export let getAllQuizesUser = async (req: Request, res: Response) => {
-  let quizes = await Quiz.find((err: string) => {
+  let quizes = await Quiz.find((err: string, quizes: any) => {
     if (err) {
       res.send("Error!");
     } else {
-      console.log("Data is found");
+      res.render("quizes/user/all_quizes", { quizes: quizes });
     }
   });
-  res.render("quizes/user/all_quizes", { quizes: quizes });
 };
 
 export let getFormAddQuiz = async (req: Request, res: Response) => {
   var token: string = secret_token();
   res.header("Bearer", token);
-  await Quiz.find((err: string) => {
-    if (err) {
-      res.send("Error!");
-    } else {
-      console.log("Data is found");
-    }
-  });
   res.render("quizes/admin/add_quiz");
 };
 
-export let addQuiz = (req: Request, res: Response, next: NextFunction) => {
+export let addQuiz = (req: Request, res: Response) => {
   const quiz_data = new Quiz({
     name: req.body.name,
   });

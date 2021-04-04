@@ -14,5 +14,6 @@ export let QuizSchema = new mongoose.Schema({
   answers: [{ type: mongoose.Schema.Types.ObjectId, ref: "Answer" }],
 });
 
+QuizSchema.index({username: 1 });
 const Quiz = mongoose.model<IQuiz>("Quiz", QuizSchema);
 export default Quiz;

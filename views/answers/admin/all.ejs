@@ -1,0 +1,8 @@
+<div class="container">
+  Answers for Quiz - <%= answers.name %>
+  <ul class="list-group">
+    <% answers.answers.forEach(function(answer) { %>
+    <li class="list-group-item"><%= answer.answerContent %></li>
+    <% }) %>
+  </ul>
+</div>
