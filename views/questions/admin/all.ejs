@@ -1,6 +1,24 @@
-Questions for Quiz - <%= questions.name %>
-<ul class="list-group">
-  <% questions.questions.forEach(function(question) { %>
-  <li class="list-group-item"><%= question.questionContent %></li>
-  <% }) %>
-</ul>
+<div class="container">
+  Questions for Quiz - <%= questions.name %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">№</th>
+        <th scope="col">Question</th>
+        <th scope="col">Answers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% questions.questions.forEach(function(question,index) { %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= question.questionContent %></td>
+
+        <td>
+          <a href="/questions/question/<%= question.quiz_id %>">Look answers</a>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

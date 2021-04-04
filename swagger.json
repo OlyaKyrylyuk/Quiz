@@ -1,0 +1,156 @@
+{
+    "swagger": "2.0",
+    "info":{
+        "version":"1.0.0",
+        "title":"API Documentation"
+    },
+    "paths": {
+    "/admin/quizes": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Get all quizes for admin",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+    },
+    "/admin/quizes/add": {
+        "get": {
+            "tags": [
+                "Admin"
+            ],
+            "summary": "Get form for adding quiz",
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        },
+        "post": {
+            "tags": [
+                "Admin"
+            ],
+            "summary": "Added quiz",
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+ 
+    "/statistics": {
+        "get": {
+            "tags": [
+                "Admin"
+            ],
+            "summary": "Created queries and outputted as statistics",
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+    "/questions/add/quiz/:id": {
+        "get": {
+            "tags": [
+                "Admin"
+            ],
+            "summary": "Get form for adding question",
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+
+    "/questions/add/:id": {
+        "post": {
+            "tags": [
+                "Admin"
+            ],
+            "summary": "Added question",
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+    "/questions/quiz/:id": {
+        "get": {
+            "tags": [
+                "Admin"
+            ],
+            "summary": "Output all questions for each quiz",
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+    "/questions/question/:id": {
+        "get": {
+            "tags": [
+                "Admin"
+            ],
+            "summary": "Output all answers for each question",
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+   
+    "/quizes": {
+        "get": {
+            "tags": [
+                "User"
+            ],
+            "summary": "Get all quizes for user",
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
+},
+"/pass/quiz/:id": {
+    "get": {
+        "tags": [
+            "User"
+        ],
+        "summary": "User answer questions of the quiz",
+        "responses": {
+            "200": {
+                "description": "OK"
+            }
+        }
+    }
+},
+"/answers/add/:id": {
+    "post": {
+        "tags": [
+            "User"
+        ],
+        "summary": "Added answers of user",
+        "responses": {
+            "200": {
+                "description": "OK"
+            }
+        }
+    }
+}
+
+
+}
+
+}
