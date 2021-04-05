@@ -1,7 +1,7 @@
-import { Request, Response} from "express";
+import { Request, Response } from "express";
 import Question from "../models/question";
 import secret_token from "../security/secret_token";
-import Quiz from "./../models/quiz";
+import Quiz from "../models/quiz";
 
 export let getFormQuestionAdd = (req: Request, res: Response) => {
   var token: string = secret_token();
