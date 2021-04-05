@@ -13,7 +13,9 @@
       <tr>
         <td><%= index+1 %></td>
         <td><%= question.questionContent %></td>
-
+        <td>
+          <a href="/questions/add/quiz/<%= question.quiz_id %>">Add question</a>
+        </td>
         <td>
           <a href="/questions/question/<%= question.quiz_id %>">Look answers</a>
         </td>

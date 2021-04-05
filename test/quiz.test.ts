@@ -1,7 +1,4 @@
-//const request = require("supertest");
-//import request from "supertest";
 import app from "../index";
-//const app = require("../index.ts");
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { expect } from "chai";
@@ -29,9 +26,6 @@ describe("Quizes Tests", () => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res).not.to.have.header("bearer");
-        //expect(res.body).to.be.an('array');
-        //cannot see data because of res.render in controller
-        // with res.send everything is correct
         done();
       });
   });
@@ -68,9 +62,6 @@ describe("Quizes Tests", () => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res).to.have.header("bearer");
-        //expect(res.body).to.be.an('array');
-        //cannot see data because of res.render in controller
-        // with res.send everything is correct
         done();
       });
   });

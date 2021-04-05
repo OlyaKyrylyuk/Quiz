@@ -1,6 +1,6 @@
-import { Request, Response} from "express";
-import Quiz from "./../models/quiz";
-import Answer from "./../models/answer";
+import { Request, Response } from "express";
+import Quiz from "../models/quiz";
+import Answer from "../models/answer";
 import Question from "../models/question";
 
 export let addAnswer = async (req: Request, res: Response) => {
@@ -26,7 +26,6 @@ export let addAnswer = async (req: Request, res: Response) => {
     })
     .then(() => {
       Array_data.forEach(async (arr: any) => {
-        console.log("obj: " + arr);
         let result = await Question.findById(arr.question_id);
         if (result != null) {
           result.answers.push(arr);
@@ -41,7 +40,6 @@ export let addAnswer = async (req: Request, res: Response) => {
     })
 
     .then(() => {
-      console.log("fff");
       res.redirect("/quizes");
     });
 };

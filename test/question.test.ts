@@ -1,9 +1,7 @@
 import app from "../index";
-//const app = require("../index.ts");
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { expect } from "chai";
-import Quiz from "../models/quiz";
 
 chai.use(chaiHttp);
 

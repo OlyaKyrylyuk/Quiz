@@ -1,5 +1,5 @@
-import { Request, Response} from "express";
-import Quiz from "./../models/quiz";
+import { Request, Response } from "express";
+import Quiz from "../models/quiz";
 import secret_token from "../security/secret_token";
 
 export let getApiDocumentation = (req: Request, res: Response) => {
